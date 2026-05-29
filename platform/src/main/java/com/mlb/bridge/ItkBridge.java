@@ -18,10 +18,10 @@ public class ItkBridge {
 		}
     }
 
-    public static void main(String[] args) {
+    /**public static void main(String[] args) {
         ItkBridge bridge = new ItkBridge();
         ItkResult result = bridge.fetchUrl("https://statsapi.mlb.com/api/v1/schedule?sportId=1");
         System.out.println("Error code: " + result.errorCode);
         System.out.println("JSON: " + result.json);
-    }
+    }**/
 }
