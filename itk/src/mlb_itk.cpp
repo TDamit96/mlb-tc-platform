@@ -1,0 +1,63 @@
+#include <string>
+#include <curl/curl.h>
+#include <jni.h>
+#include <cstring>
+
+extern "C" {
+
+struct ItkResult {
+    int errorCode;
+    const char* json;
+};
+
+static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
+ItkResult fetchUrl(const char* url) {
+    CURL* curl = curl_easy_init();
+    std::string buffer;
+
+    if (!curl) {
+        return { 1, nullptr };
+    }
+
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+
+    CURLcode res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+
+    if (res != CURLE_OK) {
+        return { 2, nullptr };
+    }
+
+    char* result = strdup(buffer.c_str());
+    return { 0, result };
+}
+
+}
+
+extern "C" JNIEXPORT jobject JNICALL
+Java_com_mlb_itk_ItkBridge_fetchUrl(JNIEnv* env, jobject obj, jstring url) {
+    const char* nativeUrl = env->GetStringUTFChars(url, nullptr);
+    ItkResult result = fetchUrl(nativeUrl);
+    env->ReleaseStringUTFChars(url, nativeUrl);
+
+    // Find the ItkResult class
+    jclass resultClass = env->FindClass("com/mlb/itk/ItkBridge$ItkResult");
+    if (!resultClass) return nullptr;
+
+    // Get the constructor (int, String)
+    jmethodID ctor = env->GetMethodID(resultClass, "<init>", "(ILjava/lang/String;)V");
+    if (!ctor) return nullptr;
+
+    // Convert C string to Java String
+    jstring jsonString = result.json ? env->NewStringUTF(result.json) : nullptr;
+
+    // Create and return the Java object
+    jobject resultObj = env->NewObject(resultClass, ctor, result.errorCode, jsonString);
+    return resultObj;
+}
