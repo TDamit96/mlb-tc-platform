@@ -1,11 +1,11 @@
-package com.mlb.service.impl;
+package com.mlb.services.schedule.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mlb.domain.*;
-import com.mlb.itk.ItkBridge;
-import com.mlb.service.ScheduleException;
-import com.mlb.service.ScheduleService;
+import com.mlb.bridge.ItkBridge;
+import com.mlb.services.schedule.ScheduleException;
+import com.mlb.services.schedule.ScheduleService;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;

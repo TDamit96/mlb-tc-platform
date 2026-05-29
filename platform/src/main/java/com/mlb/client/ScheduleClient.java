@@ -2,8 +2,8 @@ package com.mlb.client;
 
 import com.mlb.domain.Game;
 import com.mlb.domain.GamesForDate;
-import com.mlb.service.ScheduleService;
-import com.mlb.service.impl.ScheduleServiceImpl;
+import com.mlb.services.schedule.ScheduleService;
+import com.mlb.services.schedule.impl.ScheduleServiceImpl;
 
 import java.time.LocalDate;
 

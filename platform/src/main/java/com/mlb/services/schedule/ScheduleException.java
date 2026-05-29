@@ -1,4 +1,4 @@
-package com.mlb.service;
+package com.mlb.services.schedule;
 
 public class ScheduleException extends Exception {
     public ScheduleException(String message) {

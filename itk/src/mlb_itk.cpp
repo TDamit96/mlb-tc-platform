@@ -41,13 +41,13 @@ ItkResult fetchUrl(const char* url) {
 }
 
 extern "C" JNIEXPORT jobject JNICALL
-Java_com_mlb_itk_ItkBridge_fetchUrl(JNIEnv* env, jobject obj, jstring url) {
+Java_com_mlb_bridge_ItkBridge_fetchUrl(JNIEnv* env, jobject obj, jstring url) {
     const char* nativeUrl = env->GetStringUTFChars(url, nullptr);
     ItkResult result = fetchUrl(nativeUrl);
     env->ReleaseStringUTFChars(url, nativeUrl);
 
     // Find the ItkResult class
-    jclass resultClass = env->FindClass("com/mlb/itk/ItkBridge$ItkResult");
+    jclass resultClass = env->FindClass("com/mlb/bridge/ItkBridge$ItkResult");
     if (!resultClass) return nullptr;
 
     // Get the constructor (int, String)

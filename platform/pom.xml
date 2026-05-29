@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.mlb</groupId>
-  <artifactId>soa</artifactId>
+  <artifactId>platform</artifactId>
   <version>1.0</version>
 
-  <name>soa</name>
+  <name>platform</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

@@ -1,6 +1,24 @@
+# Maven
 target/
-build/
-*.dll
-*.so
-*.class
-*.log
+*.jar
+
+# CMake / build
+itk/build/
+itk/CMakeFiles/
+itk/*.dll
+itk/*.a
+itk/*.lib
+itk/*.exe
+itk/*.pdb
+itk/*.obj
+itk/*.log
+itk/*.cache
+itk/*.txt
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS / misc
+*.DS_Store
+Thumbs.db

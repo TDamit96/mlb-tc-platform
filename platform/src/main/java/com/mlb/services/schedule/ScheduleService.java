@@ -1,4 +1,4 @@
-package com.mlb.service;
+package com.mlb.services.schedule;
 
 import com.mlb.domain.GamesForDate;
 

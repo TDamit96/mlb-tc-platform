@@ -1,4 +1,4 @@
-package com.mlb.itk;
+package com.mlb.bridge;
 
 /**
  * Hello world!
