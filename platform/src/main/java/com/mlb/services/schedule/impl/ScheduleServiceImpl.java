@@ -38,6 +38,29 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    @Override
+    public List<Game> getGamesForDateRange(LocalDate startDate, LocalDate endDate) throws Exception {
+        List<Game> allGames = new ArrayList<>();
+        LocalDate date = startDate;
+
+        while (!date.isAfter(endDate)) {
+            GamesForDate gamesForDate = getGamesForDate(date);
+            allGames.addAll(gamesForDate.games);
+            date = date.plusDays(1);
+        }
+
+        return allGames;
+    }
+
+    @Override
+    public List<Game> getGamesForTeam(String teamName, LocalDate date) throws Exception {
+        GamesForDate gamesForDate = getGamesForDate(date);
+        return gamesForDate.games.stream()
+            .filter(g -> g.homeTeam.name.equalsIgnoreCase(teamName)
+                    || g.awayTeam.name.equalsIgnoreCase(teamName))
+            .toList();
+    }
+
     // parses JSON into domain model
     private GamesForDate parseGamesForDateJson(String json) throws Exception {
         JsonNode root = mapper.readTree(json);
