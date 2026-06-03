@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mlb.domain.*;
 import com.mlb.bridge.ItkBridge;
+import com.mlb.bridge.ScheduleBridge;
 import com.mlb.services.schedule.ScheduleException;
 import com.mlb.services.schedule.ScheduleService;
 
@@ -14,13 +15,13 @@ import java.util.List;
 
 public class ScheduleServiceImpl implements ScheduleService {
 
-    private final ItkBridge bridge = new ItkBridge();
+    private final ScheduleBridge bridge = new ScheduleBridge();
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public GamesForDate getGamesForDate(LocalDate date) throws ScheduleException {
-        String url = "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=" + date;
-        ItkBridge.ItkResult result = bridge.fetchUrl(url);
+        String urlDate = date.toString();
+        ItkBridge.ItkResult result = bridge.getScheduleForDate(urlDate);
 
         if (result.errorCode != 0) {
             throw new ScheduleException("Native error code: " + result.errorCode);
