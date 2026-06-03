@@ -2,6 +2,9 @@ package com.mlb.domain;
 
 import java.util.List;
 
+/**
+ * Represents a division in the MLB standings, containing a list of TeamRecord objects.
+ */
 public class Division {
     public final String name;
     public final List<TeamRecord> teams;

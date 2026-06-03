@@ -2,6 +2,9 @@ package com.mlb.formatters;
 
 import com.mlb.domain.*;
 
+/**
+ * Utility class for formatting Standings objects into human-readable strings.
+ */
 public class StandingsFormatter {
 
     public static void print(Standings standings) {

@@ -13,11 +13,16 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the ScheduleService interface, responsible for fetching and parsing MLB schedule data.
+ * It uses a native bridge (ScheduleBridge) to retrieve JSON data from the MLB API, and then parses it into domain models.
+ */
 public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleBridge bridge = new ScheduleBridge();
     private final ObjectMapper mapper = new ObjectMapper();
 
+    // fetches schedule data for a specific date and parses it into a GamesForDate object
     @Override
     public GamesForDate getGamesForDate(LocalDate date) throws ScheduleException {
         String urlDate = date.toString();
@@ -39,6 +44,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    // fetches schedule data for a date range by calling getGamesForDate for each date and aggregating results
     @Override
     public List<Game> getGamesForDateRange(LocalDate startDate, LocalDate endDate) throws Exception {
         List<Game> allGames = new ArrayList<>();
@@ -53,6 +59,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         return allGames;
     }
 
+    // filters games for a specific team on a given date by calling getGamesForDate and then filtering the results
     @Override
     public List<Game> getGamesForTeam(String teamName, LocalDate date) throws Exception {
         GamesForDate gamesForDate = getGamesForDate(date);
@@ -62,7 +69,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             .toList();
     }
 
-    // parses JSON into domain model
+    // helper method to parse the JSON response from the MLB API into a GamesForDate object
     private GamesForDate parseGamesForDateJson(String json) throws Exception {
         JsonNode root = mapper.readTree(json);
 

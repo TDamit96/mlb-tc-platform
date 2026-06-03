@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * Console client for interacting with the MLB schedule service.
+ */
 public class ScheduleClient {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -62,11 +66,4 @@ public class ScheduleClient {
         games.games.forEach(g -> System.out.println(GameFormatter.summarize(g)));
     }
 
-    /**private static void filterByTeam(ScheduleService service, String team) throws Exception {
-        GamesForDate games = service.getGamesForDate(LocalDate.now());
-        games.games.stream()
-            .filter(g -> g.homeTeam.name.equalsIgnoreCase(team) ||
-                         g.awayTeam.name.equalsIgnoreCase(team))
-            .forEach(g -> System.out.println(GameFormatter.summarize(g)));
-    }**/
 }

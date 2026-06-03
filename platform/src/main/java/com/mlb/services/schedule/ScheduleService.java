@@ -6,6 +6,9 @@ import com.mlb.domain.GamesForDate;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Interface for the ScheduleService, which provides methods to fetch MLB schedule data for specific dates, teams, and date ranges.
+ */
 public interface ScheduleService {
     GamesForDate getGamesForDate(LocalDate date) throws ScheduleException;
     List<Game> getGamesForTeam(String teamName, LocalDate date) throws Exception;

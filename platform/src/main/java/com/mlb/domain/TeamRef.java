@@ -1,5 +1,8 @@
 package com.mlb.domain;
 
+/**
+ * Represents an reference to a MLB team, containing the team's ID and name.
+ */
 public class TeamRef {
     public final int id;
     public final String name;

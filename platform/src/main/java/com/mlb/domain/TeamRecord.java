@@ -1,7 +1,9 @@
 package com.mlb.domain;
 
-// import com.mlb.domain.TeamRef;
-
+/**
+ * Represents a team's record; including wins, losses, and win percentage.
+ * References a TeamRef object to identify the team.
+ */
 public class TeamRecord {
     public final TeamRef team;
     public final int wins;

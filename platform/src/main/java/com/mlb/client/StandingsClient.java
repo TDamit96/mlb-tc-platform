@@ -3,6 +3,9 @@ package com.mlb.client;
 import com.mlb.services.standings.StandingsService;
 import com.mlb.services.standings.impl.StandingsServiceImpl;
 
+/**
+ * Console client for interacting with the MLB standings service.
+ */
 public class StandingsClient {
     public static void main(String[] args) throws Exception {
         StandingsService service = new StandingsServiceImpl();

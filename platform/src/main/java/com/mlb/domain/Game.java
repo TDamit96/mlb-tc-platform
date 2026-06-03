@@ -2,6 +2,9 @@ package com.mlb.domain;
 
 import java.time.ZonedDateTime;
 
+/**
+ * Represents a game in the MLB schedule.
+ */
 public class Game {
     public final long gamePk;
     public final TeamRef homeTeam;

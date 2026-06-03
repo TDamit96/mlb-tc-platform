@@ -6,9 +6,6 @@ public class ItkBridge {
         System.loadLibrary("libmlb_itk"); // loads libmlb_itk.dll
     }
 
-    //public native ItkResult fetchUrl(String url);
-    //public native String getStandingsJson();
-
     // Shared result type for structured responses
     public static class ItkResult {
         public int errorCode;

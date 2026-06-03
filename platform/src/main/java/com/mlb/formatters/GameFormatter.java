@@ -3,6 +3,9 @@ package com.mlb.formatters;
 import com.mlb.domain.Game;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Utility class for formatting Game objects into human-readable strings.
+ */
 public class GameFormatter {
     private static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
